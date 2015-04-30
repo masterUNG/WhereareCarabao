@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
     private LocationManager objLocationManager;
     private Criteria objCriteria;
     private boolean bolGPS, bolNetword;
+    private int intMapType;
 
 
     @Override
@@ -157,7 +158,15 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void clickShowMap(View view) {
+
+        //Get Lat, Lng
+        double douLat = Double.parseDouble(txtLat.getText().toString());
+        double douLng = Double.parseDouble(txtLong.getText().toString());
+
         Intent objIntent = new Intent(MainActivity.this, MapsActivity.class);
+        objIntent.putExtra("Lat", douLat);
+        objIntent.putExtra("Lng", douLng);
+        objIntent.putExtra("MapType", intMapType);
         startActivity(objIntent);
     }
 
@@ -171,14 +180,23 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.itemNormal:
+                intMapType = 1;
+                break;
+            case R.id.itemSatellite:
+                intMapType = 2;
+                break;
+            case R.id.itemTerrain:
+                intMapType = 3;
+                break;
+            case R.id.itemHybrid:
+                intMapType = 4;
+                break;
+            default:
+                intMapType = 1;
+                break;
         }
 
         return super.onOptionsItemSelected(item);
