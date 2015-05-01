@@ -74,7 +74,7 @@ public class MapsActivity extends FragmentActivity {
     private void setUpMap() {
 
         //Assign Center Map to Station Owner
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ownerLatLng, 15));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ownerLatLng, 16));
 
         //Create Maker
         createMaker();
